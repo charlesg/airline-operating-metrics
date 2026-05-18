@@ -4,20 +4,20 @@ Structured dataset of airline operating metrics for eight carriers (five US, thr
 
 ## Carriers
 
-| Code | Airline | Geography |
-|------|---------|-----------|
-| AMERICAN | American Airlines | US |
-| DELTA | Delta Air Lines | US |
-| JETBLUE | JetBlue Airways | US |
-| SOUTHWEST | Southwest Airlines | US |
-| UNITED | United Airlines | US |
-| AVIANCA | Avianca | LatAm |
-| COPA | Copa Airlines | LatAm |
-| LATAM | LATAM Airlines | LatAm |
+|Code|Airline|Geography|
+|---|---|---|
+|AMERICAN|American Airlines|US|
+|DELTA|Delta Air Lines|US|
+|JETBLUE|JetBlue Airways|US|
+|SOUTHWEST|Southwest Airlines|US|
+|UNITED|United Airlines|US|
+|AVIANCA|Avianca|LatAm|
+|COPA|Copa Airlines|LatAm|
+|LATAM|LATAM Airlines|LatAm|
 
 ## Layout
 
-```
+```text
 raw/          # One CSV per airline — append-only, source-reported metrics only
 processed/    # Derived and calculated metrics
 sources/      # Original source documents (PDFs, IR supplements, BTS downloads)
@@ -26,16 +26,21 @@ scripts/      # Validation and crosscheck scripts
 
 See [CLAUDE.md](CLAUDE.md) for the full schema, metric vocabulary, unit conventions, and data entry rules.
 
-## Large BTS Source Files (not in repo)
+## BTS Source Files
 
-The T-100 Segment files (`T_T100_SEGMENT_US_CARRIER_ONLY.csv`) are ~150MB each and exceed GitHub's file size limit. They are not versioned here. To reproduce the BTS crosscheck:
+The smaller BTS schedules are versioned under `sources/<year>/`:
 
-1. Go to [BTS TranStats](https://www.transtats.bts.gov/)
-2. Download **T-100 Segment (US Carriers Only)** for each year you need
-3. Place files at `sources/<year>/T_T100_SEGMENT_US_CARRIER_ONLY.csv`
-4. Run `python scripts/bts_crosscheck.py`
+|File|Schedule|Direct link|
+|---|---|---|
+|`T_F41SCHEDULE_P12.csv`|P-1.2 (P&L)|[Fields](https://www.transtats.bts.gov/Fields.asp?gnoyr_VQ=FMI)|
+|`T_F41SCHEDULE_P12A.csv`|P-12(a) (Fuel)|[Fields](https://www.transtats.bts.gov/Fields.asp?gnoyr_VQ=FMH)|
+|`T_F41SCHEDULE_P52.csv`|P-5.2 (Aircraft)|[Fields](https://www.transtats.bts.gov/Fields.asp?gnoyr_VQ=FMK)|
 
-The smaller BTS schedules (P-1.2, P-12(a), P-5.2) are included in the repo under `sources/<year>/`.
+**T-100 Segment files are not in the repo** — at ~150MB each they exceed GitHub's file size limit. To reproduce the BTS crosscheck:
+
+1. Download **T-100 Segment (US Carriers Only)** from [BTS TranStats](https://www.transtats.bts.gov/) ([Fields](https://www.transtats.bts.gov/Fields.asp?gnoyr_VQ=GDM)) for each year you need
+2. Place files at `sources/<year>/T_T100_SEGMENT_US_CARRIER_ONLY.csv`
+3. Run `python scripts/bts_crosscheck.py`
 
 ## Quick Start
 
