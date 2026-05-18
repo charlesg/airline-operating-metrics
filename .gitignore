@@ -15,8 +15,14 @@ __pycache__/
 *.h5
 *.hdf5
 
+# Large BTS source files (re-downloadable from transtats.bts.gov)
+**/T_T100_SEGMENT_US_CARRIER_ONLY.csv
+**/T_T100_SEGMENT_US_CARRIER_ONLY.csv.old
+**/old/
+
 # OS / editor
 .DS_Store
+**/.DS_Store
 Thumbs.db
 .vscode/
 .idea/
