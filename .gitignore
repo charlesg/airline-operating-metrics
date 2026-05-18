@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data — large or derived files not worth versioning
+*.parquet
+*.feather
+*.h5
+*.hdf5
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Archives
+*.zip
+
+# Secrets / env
+.env
+*.env.local
+
+# Build / dist
+dist/
+build/
